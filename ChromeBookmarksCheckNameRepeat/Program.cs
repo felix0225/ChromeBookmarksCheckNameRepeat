@@ -14,8 +14,6 @@ namespace ChromeBookmarksCheckNameRepeat
 {
     class Program
     {
-        public static readonly List<Result> listResult = new List<Result>();
-
         static async Task Main(string[] args)
         {
             Console.OutputEncoding = Encoding.UTF8;
@@ -81,26 +79,18 @@ namespace ChromeBookmarksCheckNameRepeat
                     catch (HttpRequestException e)
                     {
                         Console.WriteLine($"錯誤訊息：{e.Message}");
-                        var message = e.Message;
                         if (e.InnerException != null)
                         {
                             Console.WriteLine($"內部錯誤訊息：{e.InnerException.Message}");
-                            message += e.InnerException.Message;
                         }
-
-                        listResult.Add(new Result { FolderPath = folderPath, Name = item.name, Url = item.url, ErrMsg = message });
                     }
                     catch (Exception e)
                     {
                         Console.WriteLine($"錯誤訊息：{e.Message}");
-                        var message = e.Message;
                         if (e.InnerException != null)
                         {
                             Console.WriteLine($"內部錯誤訊息：{e.InnerException.Message}");
-                            message += e.InnerException.Message;
                         }
-
-                        listResult.Add(new Result { FolderPath = folderPath, Name = item.name, Url = item.url, ErrMsg = message });
                     }
                 }
             }
